@@ -39,7 +39,7 @@ const GistsList = ({ gistsData }) => {
                 </td>
                 <td>
                   <Link
-                    to="/"
+                    to={`/gist/${data.id}`}
                     style={{ width: "35px", display: "inline-block" }}
                   >
                     <ProfileAvatar avatarUrl={data.owner.avatar_url} />

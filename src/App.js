@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Gists from "./pages/Gists";
 import Auth from "./pages/Auth";
 import Navbar from "./Navbar/Navbar";
+import GistPage from "./pages/GistPage";
 
 function App() {
   // const handleLogin = () => {
@@ -16,7 +17,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Gists />} />
+          <Route path="/">
+            <Route index element={<Gists />} />
+            <Route path="/gist/:gistId" element={<GistPage />} />
+          </Route>
+          {/* <Route path="/" element={<Gists />}>
+            <Route path="/gist/:gistId" element={<GistPage />} />
+          </Route> */}
           <Route path="/oauth-callback" element={<Auth />} />
         </Routes>
       </BrowserRouter>

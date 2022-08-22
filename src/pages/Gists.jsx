@@ -8,6 +8,7 @@ const Gists = () => {
   const [display, setDisplay] = useState("List");
   const [gistsData, setGistsData] = useState([]);
   const [pageInput, setPageInput] = useState("1");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   {
     /* making api call to get list of public gists from 
@@ -19,6 +20,7 @@ const Gists = () => {
     getPublicGists().then((response) => {
       // console.log("Making Api Call");
       setGistsData(response);
+      setIsLoaded(true);
     });
   }, []);
 
@@ -80,69 +82,83 @@ const Gists = () => {
   };
 
   return (
-    <div className="container Gists">
-      <div className="toogleDisplay" style={{ margin: "10px" }}>
-        <button className="toggleButtons" onClick={() => setDisplay("Grid")}>
-          <i className="fa fas fa-th-large"></i>
-        </button>
+    <>
+      {isLoaded && (
+        <div className="container Gists">
+          <div className="toogleDisplay" style={{ margin: "10px" }}>
+            <button
+              className="toggleButtons"
+              onClick={() => setDisplay("Grid")}
+            >
+              <i className="fa fas fa-th-large"></i>
+            </button>
 
-        <span className="separator">|</span>
+            <span className="separator">|</span>
 
-        <button className="toggleButtons" onClick={() => setDisplay("List")}>
-          <i className="fa fal fa-list-ul"></i>
-        </button>
-      </div>
+            <button
+              className="toggleButtons"
+              onClick={() => setDisplay("List")}
+            >
+              <i className="fa fal fa-list-ul"></i>
+            </button>
+          </div>
 
-      {/* This will check if layout is set to grid or list
+          {/* This will check if layout is set to grid or list
        and will display accordingly. We are passing the data we 
        saved in component local state to these component as props */}
 
-      {display === "Grid" && <div>Grid Display</div>}
-      {display === "List" && <GistsList gistsData={currentRecords} />}
+          {display === "Grid" && <div>Grid Display</div>}
+          {display === "List" && <GistsList gistsData={currentRecords} />}
 
-      <footer className="footer">
-        <button
-          className="btn nxtPageBtn"
-          onClick={nextPage}
-          disabled={disableBtn(nPages)}
-        >
-          Next Page
-          <span>
-            <i className="fa fal fa-arrow-right"></i>
-          </span>
-        </button>
+          <footer className="footer">
+            <button
+              className="btn nxtPageBtn"
+              onClick={nextPage}
+              disabled={disableBtn(nPages)}
+            >
+              Next Page
+              <span>
+                <i className="fa fal fa-arrow-right"></i>
+              </span>
+            </button>
 
-        <div className="paginationBtns">
-          <span>Page</span>
+            <div className="paginationBtns">
+              <span>Page</span>
 
-          <InputField
-            shouldFocus
-            value={pageInput}
-            onChange={(e) => handlePageInput(e)}
-            onKeyUp={(e) => handleEnterKey(e)}
-          />
+              <InputField
+                shouldFocus
+                value={pageInput}
+                onChange={(e) => handlePageInput(e)}
+                onKeyUp={(e) => handleEnterKey(e)}
+              />
 
-          {/* <input
+              {/* <input
             type="number"
             value={pageInput}
             className="paginationInput"
             onChange={(e) => handlePageInput(e)}
             onKeyUp={(e) => handleEnterKey(e)}
           /> */}
-          <span>of {nPages}</span>
-          <button className="btn" onClick={prevPage} disabled={disableBtn(1)}>
-            <i className="fa fas fa-chevron-left pagination-arrow"></i>
-          </button>
-          <button
-            className="btn"
-            onClick={nextPage}
-            disabled={disableBtn(nPages)}
-          >
-            <i className="fa fas fa-chevron-right pagination-arrow"></i>
-          </button>
+              <span>of {nPages}</span>
+              <button
+                className="btn"
+                onClick={prevPage}
+                disabled={disableBtn(1)}
+              >
+                <i className="fa fas fa-chevron-left pagination-arrow"></i>
+              </button>
+              <button
+                className="btn"
+                onClick={nextPage}
+                disabled={disableBtn(nPages)}
+              >
+                <i className="fa fas fa-chevron-right pagination-arrow"></i>
+              </button>
+            </div>
+          </footer>
         </div>
-      </footer>
-    </div>
+      )}
+    </>
   );
 };
 

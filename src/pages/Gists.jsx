@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import GistsList from "./GistsList";
 import "./styling/Gists.css";
 import { getPublicGists } from "../apiCall";
+import InputField from "../components/InputField";
 
 const Gists = () => {
   const [display, setDisplay] = useState("List");
@@ -60,6 +61,7 @@ const Gists = () => {
     parseInt(currentPage) === pageNum ? "disabled" : "";
 
   const handlePageInput = (e) => {
+    console.log("handlePageInput called");
     const val = e.target.value;
     if (parseInt(val) > nPages || parseInt(val) <= 0) {
       setPageInput(nPages);
@@ -69,6 +71,7 @@ const Gists = () => {
   };
 
   const handleEnterKey = (e) => {
+    console.log("handleEnterKey called");
     if (e.key === "Enter" || e.keyCode === 13) {
       if (e.target.value.length !== 0) {
         setCurrentPage(pageInput);
@@ -111,13 +114,21 @@ const Gists = () => {
 
         <div className="paginationBtns">
           <span>Page</span>
-          <input
+
+          <InputField
+            shouldFocus
+            value={pageInput}
+            onChange={(e) => handlePageInput(e)}
+            onKeyUp={(e) => handleEnterKey(e)}
+          />
+
+          {/* <input
             type="number"
             value={pageInput}
             className="paginationInput"
             onChange={(e) => handlePageInput(e)}
             onKeyUp={(e) => handleEnterKey(e)}
-          />
+          /> */}
           <span>of {nPages}</span>
           <button className="btn" onClick={prevPage} disabled={disableBtn(1)}>
             <i className="fa fas fa-chevron-left pagination-arrow"></i>

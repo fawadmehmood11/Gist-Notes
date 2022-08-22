@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GistsList from "./GistsList";
-import "./Gists.css";
+import "./styling/Gists.css";
 import { getPublicGists } from "../apiCall";
 
 const Gists = () => {
@@ -116,10 +116,7 @@ const Gists = () => {
             value={pageInput}
             className="paginationInput"
             onChange={(e) => handlePageInput(e)}
-            onKeyUp={
-              (e) => handleEnterKey(e)
-              // e.key === "Enter" || e.keyCode === 13 ? setCurrentPage(pageInput) : ""
-            }
+            onKeyUp={(e) => handleEnterKey(e)}
           />
           <span>of {nPages}</span>
           <button className="btn" onClick={prevPage} disabled={disableBtn(1)}>

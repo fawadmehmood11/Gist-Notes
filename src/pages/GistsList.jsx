@@ -1,14 +1,15 @@
 import React from "react";
-import "./GistsList.css";
+import "./styling/GistsList.css";
 import { Link } from "react-router-dom";
+import ProfileAvatar from "../components/ProfileAvatar";
 
 const GistsList = ({ gistsData }) => {
-  const avatarImg = {
-    maxWidth: "100%",
-    borderRadius: "50%",
-    aspectRatio: "1",
-    objectFit: "cover",
-  };
+  // const avatarImg = {
+  //   maxWidth: "100%",
+  //   borderRadius: "50%",
+  //   aspectRatio: "1",
+  //   objectFit: "cover",
+  // };
   return (
     <div>
       <table className="container table">
@@ -41,7 +42,8 @@ const GistsList = ({ gistsData }) => {
                     to="/"
                     style={{ width: "35px", display: "inline-block" }}
                   >
-                    <img src={data.owner.avatar_url} alt="" style={avatarImg} />
+                    <ProfileAvatar avatarUrl={data.owner.avatar_url} />
+                    {/* <img src={data.owner.avatar_url} alt="" style={avatarImg} /> */}
                   </Link>
                 </td>
                 <td>{data.owner.login}</td>

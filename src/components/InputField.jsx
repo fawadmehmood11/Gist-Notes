@@ -6,7 +6,8 @@ const Input = styled.input`
   height: 20px;
   border-radius: 5px;
   border: 1px solid gray;
-  color: gray;
+  font-family: "Saira Semi Condensed", sans-serif;
+  color: #959d9a;
   font-size: 12px;
   text-align: center;
   outline: none;
@@ -28,7 +29,7 @@ const InputField = (props) => {
       type="number"
       value={value}
       onChange={isOnChange ? onChange : ""}
-      onKeyUp={isOnKeyUp ? onKeyUp : ""}
+      onKeyUp={isOnKeyUp ? onKeyUp : undefined}
     />
   );
 };

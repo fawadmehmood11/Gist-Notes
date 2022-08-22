@@ -1,0 +1,75 @@
+.gistsCode {
+  max-width: 900px;
+}
+
+.header {
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+
+.gistDetails {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.gistDetails .GistFileName {
+  color: #0773ff;
+}
+
+.gistDetails .GistFileDate {
+  font-size: 12px;
+}
+
+.gistAction {
+  color: #0773ff;
+}
+
+.gistAction span {
+  margin: 10px;
+}
+
+.gistAction span * {
+  margin: 5px;
+}
+
+.gistContainer {
+  border: 1px solid#DDDDDD;
+  box-shadow: -3px 5px 8px #dddddd, 3px 5px 8px #dddddd;
+  border-radius: 5px;
+}
+
+.gistHeader {
+  border-bottom: 1px solid #dddddd;
+  padding: 7px 20px;
+}
+
+.gistFile .fileIcon {
+  color: black;
+  border: 1px solid black;
+  padding: 0 3px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.gistFile .fileName {
+  color: #0773ff;
+}
+
+.gistCode {
+  padding: 15px 45px;
+}
+
+.gistCode ol {
+  /* list-style-position: outside; */
+}
+
+.gistCode li {
+  list-style-position: outside;
+  margin: 4px 0;
+}
+
+.gistCode li span {
+  position: relative;
+  right: -10px;
+}

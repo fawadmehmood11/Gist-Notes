@@ -63,7 +63,6 @@ const Gists = () => {
     parseInt(currentPage) === pageNum ? "disabled" : "";
 
   const handlePageInput = (e) => {
-    console.log("handlePageInput called");
     const val = e.target.value;
     if (parseInt(val) > nPages || parseInt(val) <= 0) {
       setPageInput(nPages);
@@ -73,7 +72,6 @@ const Gists = () => {
   };
 
   const handleEnterKey = (e) => {
-    console.log("handleEnterKey called");
     if (e.key === "Enter" || e.keyCode === 13) {
       if (e.target.value.length !== 0) {
         setCurrentPage(pageInput);

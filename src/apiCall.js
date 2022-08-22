@@ -41,10 +41,21 @@ export const getPublicGists = async () => {
 };
 
 export const getGistById = async (gistId) => {
-  console.log(`${GIST_BY_ID_URL}${gistId}`);
   const response = await axios.get(`${GIST_BY_ID_URL}${gistId}`, {
     headers: {
       Accept: "application/json",
+      // Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (response.status === 200) {
+    return response.data;
+  }
+};
+
+export const readGistCode = async (url) => {
+  const response = await axios.get(url, {
+    headers: {
+      // Accept: "application/json",
       // Authorization: `Bearer ${accessToken}`,
     },
   });

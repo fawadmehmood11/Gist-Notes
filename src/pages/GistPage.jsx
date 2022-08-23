@@ -6,6 +6,7 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import GistCodeComponent from "../components/GistCodeComponent";
 import { parseISO, formatDistanceToNow } from "date-fns";
 import InputField from "../components/InputField";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const GistPage = () => {
   const { gistId } = useParams();
@@ -23,6 +24,7 @@ const GistPage = () => {
 
   useEffect(() => {
     getGistById(gistId).then((response) => {
+      // setIsLoaded(true);
       if (response) {
         setGistData(response);
         setIsLoaded(true);
@@ -40,9 +42,10 @@ const GistPage = () => {
   }
 
   const handleInputChange = (e, changeType) => changeType(e.target.value);
-
+  const Spinner = !isLoaded ? <LoadingSpinner /> : "";
   return (
     <>
+      {Spinner}
       {isLoaded && gistData && (
         <div className="container gistsCode">
           <div className="header flex">

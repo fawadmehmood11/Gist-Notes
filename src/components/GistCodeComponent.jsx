@@ -8,7 +8,6 @@ const GistCodeComponent = ({ codeUrl, gistId }) => {
     readGistCode(codeUrl).then((response) => {
       if (response) {
         setGistCode(response);
-        console.log(typeof response);
       }
     });
   }, []);

@@ -18,8 +18,8 @@ const GistCodeComponent = ({ codeUrl, gistId }) => {
         {gistCode
           .split("\n")
           .filter((line) => line)
-          .map((line) => (
-            <li key={gistId}>
+          .map((line, index) => (
+            <li key={index}>
               <span>{line}</span>
             </li>
           ))}

@@ -7,20 +7,6 @@
   padding: 20px 0px;
 }
 
-.gistDetails {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.gistDetails .GistFileName {
-  color: #0773ff;
-}
-
-.gistDetails .GistFileDate {
-  font-size: 12px;
-}
-
 .gistAction {
   color: #0773ff;
 }

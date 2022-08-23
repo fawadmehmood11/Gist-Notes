@@ -7,6 +7,7 @@ import GistCodeComponent from "../components/GistCodeComponent";
 import { parseISO, formatDistanceToNow } from "date-fns";
 import InputField from "../components/InputField";
 import LoadingSpinner from "../components/LoadingSpinner";
+import GistDetails from "../components/GistDetails";
 
 const GistPage = () => {
   const { gistId } = useParams();
@@ -36,9 +37,9 @@ const GistPage = () => {
     filesList = Object.keys(gistData.files)[0];
     fileName = gistData.files[filesList].filename.substring(0, 15);
     codeUrl = gistData.files[filesList].raw_url;
-    date = parseISO(gistData.created_at);
-    timePeriod = formatDistanceToNow(date);
-    timeAgo = `${timePeriod} ago`;
+    // date = parseISO(gistData.created_at);
+    // timePeriod = formatDistanceToNow(date);
+    // timeAgo = `${timePeriod} ago`;
   }
 
   const handleInputChange = (e, changeType) => changeType(e.target.value);
@@ -49,20 +50,7 @@ const GistPage = () => {
       {isLoaded && gistData && (
         <div className="container gistsCode">
           <div className="header flex">
-            <div className="gistDetails">
-              <Link
-                to={`/gist/${gistData.id}`}
-                style={{ width: "35px", display: "inline-block" }}
-              >
-                <ProfileAvatar avatarUrl={gistData.owner.avatar_url} />
-              </Link>
-              <div className="gistInfo">
-                <p className="GistFileName">
-                  <span></span> {gistData.owner.login} / <span>{fileName}</span>
-                </p>
-                <p className="GistFileDate">Created {timeAgo}</p>
-              </div>
-            </div>
+            <GistDetails gistData={gistData} />
             <div className="gistAction">
               <span>
                 <i className="fa fa-star-o"></i> Stars

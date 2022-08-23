@@ -35,7 +35,7 @@ const Navbar = () => {
                 value={searchVal}
                 onChange={handleSearch}
               />
-              <i className="fas fa-search fa-thin"></i>
+              <i className="fa fas fa-search"></i>
             </div>
             <button className="btn btnLogin" onClick={handleLogin}>
               Login

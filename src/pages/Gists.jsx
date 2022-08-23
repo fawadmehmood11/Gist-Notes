@@ -18,7 +18,6 @@ const Gists = () => {
   }
   useEffect(() => {
     getPublicGists().then((response) => {
-      // console.log("Making Api Call");
       setGistsData(response);
       setIsLoaded(true);
     });
@@ -130,13 +129,6 @@ const Gists = () => {
                 onKeyUp={(e) => handleEnterKey(e)}
               />
 
-              {/* <input
-            type="number"
-            value={pageInput}
-            className="paginationInput"
-            onChange={(e) => handlePageInput(e)}
-            onKeyUp={(e) => handleEnterKey(e)}
-          /> */}
               <span>of {nPages}</span>
               <button
                 className="btn"

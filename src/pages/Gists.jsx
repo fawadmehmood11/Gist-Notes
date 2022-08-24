@@ -22,7 +22,6 @@ const Gists = () => {
     this data in component local state */
   }
   useEffect(() => {
-    console.log(getAuthorizedUser());
     getPublicGists().then((response) => {
       setGistsData(response);
       setIsLoaded(true);

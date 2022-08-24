@@ -4,8 +4,12 @@ import "./styling/Gists.css";
 import { getPublicGists } from "../apiCall";
 import InputField from "../components/InputField";
 import GistsGrid from "./GistsGrid";
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import { getAuthorizedUser } from "../utils";
 const Gists = () => {
+  // const user = useSelector(selectUser);
+
   const [display, setDisplay] = useState("List");
   const [gistsData, setGistsData] = useState([]);
   const [pageInput, setPageInput] = useState("1");
@@ -18,6 +22,7 @@ const Gists = () => {
     this data in component local state */
   }
   useEffect(() => {
+    console.log(getAuthorizedUser());
     getPublicGists().then((response) => {
       setGistsData(response);
       setIsLoaded(true);
@@ -82,7 +87,7 @@ const Gists = () => {
 
   return (
     <>
-      {isLoaded && (
+      {isLoaded && gistsData && (
         <div className="container Gists">
           <div className="toogleDisplay" style={{ margin: "10px" }}>
             <button

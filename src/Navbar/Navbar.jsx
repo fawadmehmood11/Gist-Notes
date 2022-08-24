@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { getAuthorizedUser } from "../utils";
+import ProfileAvatar from "../components/ProfileAvatar";
 const Navbar = () => {
   const [searchVal, setSearchVal] = useState("");
+
+  const userDetails = getAuthorizedUser();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -37,9 +41,25 @@ const Navbar = () => {
               />
               <i className="fa fas fa-search"></i>
             </div>
-            <button className="btn btnLogin" onClick={handleLogin}>
-              Login
-            </button>
+
+            {!userDetails && (
+              <button className="btn btnLogin" onClick={handleLogin}>
+                Login
+              </button>
+            )}
+
+            {userDetails && (
+              <div
+                className="dropDown"
+                style={{
+                  width: "35px",
+                  display: "inline-block",
+                  cursor: "pointer",
+                }}
+              >
+                <ProfileAvatar avatarUrl={userDetails.avatar_url} />
+              </div>
+            )}
           </form>
         </div>
       </div>

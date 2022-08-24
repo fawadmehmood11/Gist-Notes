@@ -3,6 +3,7 @@ import GistsList from "./GistsList";
 import "./styling/Gists.css";
 import { getPublicGists } from "../apiCall";
 import InputField from "../components/InputField";
+import GistsGrid from "./GistsGrid";
 
 const Gists = () => {
   const [display, setDisplay] = useState("List");
@@ -41,14 +42,15 @@ const Gists = () => {
 
   const nextPage = () => {
     if (currentPage !== nPages) {
-      setCurrentPage(currentPage + 1);
-      setPageInput(currentPage + 1);
+      console.log(typeof currentPage);
+      setCurrentPage(parseInt(currentPage) + 1);
+      setPageInput(parseInt(currentPage) + 1);
     }
   };
   const prevPage = () => {
     if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-      setPageInput(currentPage - 1);
+      setCurrentPage(parseInt(currentPage) - 1);
+      setPageInput(parseInt(currentPage) - 1);
     }
   };
 
@@ -104,7 +106,7 @@ const Gists = () => {
        and will display accordingly. We are passing the data we 
        saved in component local state to these component as props */}
 
-          {display === "Grid" && <div>Grid Display</div>}
+          {display === "Grid" && <GistsGrid gistsData={currentRecords} />}
           {display === "List" && <GistsList gistsData={currentRecords} />}
 
           <footer className="footer">
@@ -123,7 +125,6 @@ const Gists = () => {
               <span>Page</span>
 
               <InputField
-                shouldFocus
                 value={pageInput}
                 onChange={(e) => handlePageInput(e)}
                 onKeyUp={(e) => handleEnterKey(e)}

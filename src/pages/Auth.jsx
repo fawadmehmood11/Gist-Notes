@@ -24,6 +24,7 @@ const Auth = () => {
     client_id: process.env.REACT_APP_CLIENT_ID,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     code: newUrl[1],
+    redirectUrl: process.env.REACT_APP_REDIRECT_URI,
   };
 
   const opts = {

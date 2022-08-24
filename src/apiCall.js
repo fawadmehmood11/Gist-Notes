@@ -14,7 +14,7 @@ export const createAuthToken = async (TOKEN_URL, body, opts) => {
 };
 
 export const getUserDetails = async (accessToken) => {
-  console.log("userDetails", accessToken);
+  // console.log("userDetails", accessToken);
   const response = await axios.get(USER_URL, {
     headers: {
       Accept: "application/json",

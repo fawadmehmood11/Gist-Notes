@@ -1,5 +1,6 @@
 .gistsCode {
   max-width: 900px;
+  padding: 10px 0;
 }
 
 .header {
@@ -43,21 +44,18 @@
 }
 
 .gistCode {
-  padding: 15px 45px;
-}
-
-.gistCode ol {
-  /* list-style-position: outside; */
+  padding: 15px 25px;
+  overflow: hidden;
 }
 
 .gistCode li {
   list-style-position: outside;
   margin: 4px 0;
+  margin-left: 1em;
 }
 
 .gistCode li span {
   position: relative;
-  right: -10px;
-  text-align: justify;
+  right: -15px;
   word-wrap: break-word;
 }

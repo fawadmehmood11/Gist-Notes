@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./styling/GistPage.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getGistById } from "../apiCall";
-import ProfileAvatar from "../components/ProfileAvatar";
 import GistCodeComponent from "../components/GistCodeComponent";
-import { parseISO, formatDistanceToNow } from "date-fns";
 import InputField from "../components/InputField";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GistDetails from "../components/GistDetails";
@@ -18,28 +16,21 @@ const GistPage = () => {
 
   let filesList = "";
   let fileName = "";
-  let date = "";
-  let timePeriod = "";
-  let timeAgo = "";
   let codeUrl = "";
 
   useEffect(() => {
     getGistById(gistId).then((response) => {
-      // setIsLoaded(true);
       if (response) {
         setGistData(response);
         setIsLoaded(true);
       }
     });
-  }, []);
+  }, [gistId]);
 
   if (gistData && isLoaded) {
     filesList = Object.keys(gistData.files)[0];
     fileName = gistData.files[filesList].filename.substring(0, 15);
     codeUrl = gistData.files[filesList].raw_url;
-    // date = parseISO(gistData.created_at);
-    // timePeriod = formatDistanceToNow(date);
-    // timeAgo = `${timePeriod} ago`;
   }
 
   const handleInputChange = (e, changeType) => changeType(e.target.value);
@@ -78,7 +69,7 @@ const GistPage = () => {
                 <span className="fileName">{fileName}</span>
               </p>
             </div>
-            <GistCodeComponent codeUrl={codeUrl} gistId={gistData.id} />
+            <GistCodeComponent codeUrl={codeUrl} gridPage={false} />
           </div>
         </div>
       )}

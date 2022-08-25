@@ -13,6 +13,7 @@ const UserGists = () => {
   useEffect(() => {
     getUserGists(localStorage.getItem("token")).then((response) => {
       if (response) {
+        console.log(response);
         setUserGists(response);
       }
     });

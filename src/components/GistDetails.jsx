@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProfileAvatar from "./ProfileAvatar";
 import { parseISO, formatDistanceToNow } from "date-fns";
 
-const GistDetailsDiv = styled.div`
+const GistDetailsDiv = styled(Link)`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -16,6 +16,7 @@ const GistFileName = styled.p`
 
 const GistFileDate = styled.p`
   font-size: 12px;
+  color: #959d9a;
 `;
 
 const GistDetails = ({ gistData }) => {
@@ -26,13 +27,10 @@ const GistDetails = ({ gistData }) => {
   const timePeriod = formatDistanceToNow(date);
   timeAgo = `${timePeriod} ago`;
   return (
-    <GistDetailsDiv>
-      <Link
-        to={`/gist/${gistData.id}`}
-        style={{ width: "35px", display: "inline-block" }}
-      >
+    <GistDetailsDiv to={`/gist/${gistData.id}`}>
+      <div style={{ width: "35px", display: "inline-block" }}>
         <ProfileAvatar avatarUrl={gistData.owner.avatar_url} />
-      </Link>
+      </div>
       <div>
         <GistFileName>
           <span>{gistData.owner.login}</span> / <span>{fileName}</span>

@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const userDetails = getAuthorizedUser();
 
-  console.log("userDetails", userDetails);
+  // console.log("userDetails", userDetails);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   const dropDownClicked = () => {
-    console.log(!showDropDown);
+    // console.log(!showDropDown);
     setShowDropDownVal(!showDropDown);
   };
 
@@ -81,7 +81,7 @@ const Navbar = () => {
                   {/* <p></p> */}
                 </div>
                 <div className="dropDownItem item-2 flexColumn">
-                  <Link to={""}>Your gists</Link>
+                  <Link to="/user">Your gists</Link>
                   <Link to={""}>Satrred gists</Link>
                   <Link to={""}>Help</Link>
                 </div>

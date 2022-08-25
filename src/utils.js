@@ -5,7 +5,7 @@ export const storeUser = (accessToken, userDetails) => {
 
 export const getAuthorizedUser = () => {
   const user = localStorage.getItem("userDetails");
-  console.log("isUser", user);
+  // console.log("isUser", user);
   return user ? JSON.parse(user) : false;
 };
 

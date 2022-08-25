@@ -129,6 +129,7 @@ const Gists = () => {
               <span>Page</span>
 
               <InputField
+                shouldFocus={false}
                 value={pageInput}
                 onChange={(e) => handlePageInput(e)}
                 onKeyUp={(e) => handleEnterKey(e)}

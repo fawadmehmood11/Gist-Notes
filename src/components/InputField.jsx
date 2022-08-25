@@ -26,6 +26,7 @@ const InputField = (props) => {
 
   return (
     <Input
+      shouldFocus={props.shouldFocus}
       type="number"
       value={value}
       onChange={isOnChange ? onChange : ""}

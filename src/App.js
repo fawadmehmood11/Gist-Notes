@@ -6,6 +6,7 @@ import Gists from "./pages/Gists";
 import Auth from "./pages/Auth";
 import Navbar from "./Navbar/Navbar";
 import GistPage from "./pages/GistPage";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   // const handleLogin = () => {
@@ -21,6 +22,9 @@ function App() {
             <Route index element={<Gists />} />
             <Route path="/gist/:gistId" element={<GistPage />} />
           </Route>
+
+          <Route path="/user" element={<UserProfile />} />
+
           {/* <Route path="/" element={<Gists />}>
             <Route path="/gist/:gistId" element={<GistPage />} />
           </Route> */}

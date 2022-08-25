@@ -1,0 +1,45 @@
+.userProfile {
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 60px;
+  padding: 60px 0px;
+}
+
+.userGistsContainer {
+  flex-grow: 1;
+  border-left: 1px solid #dddddd;
+  padding-left: 40px;
+}
+
+.userInfo {
+  gap: 10px;
+  text-align: center;
+}
+
+.userInfo button {
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid #cad6d2;
+  color: #0773ff;
+  letter-spacing: 1px;
+  font-weight: normal;
+}
+
+.userGistNav {
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.gistCodeWrapper {
+  height: fit-content;
+}
+
+.sectionNav {
+  border-bottom: 1px solid #cad6d2;
+  padding: 10px 0;
+}
+
+.sectionNav a {
+  color: #6a706e;
+  padding: 0px 10px;
+}

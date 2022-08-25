@@ -3,6 +3,10 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import GistDetails from "../components/GistDetails";
 import { getUserGists } from "../apiCall";
 import InputField from "../components/InputField";
+import GistCodeComponent from "../components/GistCodeComponent";
+import "./styling/UserProfile.css";
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const UserProfile = () => {
   const [userGists, setUserGists] = useState([]);
@@ -23,8 +27,8 @@ const UserProfile = () => {
     <div>
       {userGists.length > 0 && (
         <div className="container">
-          <div>
-            <div className="userInfo">
+          <div className="userProfile flex">
+            <div className="userInfo flexColumn">
               <div className="profileImgContainer" style={{ width: "250px" }}>
                 <ProfileAvatar avatarUrl={userGists[0].owner.avatar_url} />
               </div>
@@ -32,30 +36,11 @@ const UserProfile = () => {
               <button className="btn">View GitHub Profile</button>
             </div>
             <div className="userGistsContainer">
-              {userGists.map((gistData) => {
-                return (
-                  <div className="userGists flex">
-                    <GistDetails gistData={gistData} />
-                    <div className="gistAction">
-                      <span>
-                        <i className="fa fa-star-o"></i> Stars
-                        <InputField
-                          value={stars}
-                          onChange={(e) => handleInputChange(e, setStars)}
-                        />
-                      </span>
-                      <span>
-                        <i className="fa far fa-code-fork"></i>
-                        Frok
-                        <InputField
-                          value={forks}
-                          onChange={(e) => handleInputChange(e, setForks)}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="sectionNav">
+                <Link to="/user">All Gists</Link>
+                <Link to="starred">Starred Gists</Link>
+              </div>
+              <Outlet />
             </div>
           </div>
         </div>

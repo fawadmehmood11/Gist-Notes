@@ -82,7 +82,7 @@ const Navbar = () => {
                 </div>
                 <div className="dropDownItem item-2 flexColumn">
                   <Link to="/user">Your gists</Link>
-                  <Link to={""}>Satrred gists</Link>
+                  <Link to="user/starred">Satrred gists</Link>
                   <Link to={""}>Help</Link>
                 </div>
                 <div className="dropDownItem flexColumn">

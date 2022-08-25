@@ -7,6 +7,8 @@ import Auth from "./pages/Auth";
 import Navbar from "./Navbar/Navbar";
 import GistPage from "./pages/GistPage";
 import UserProfile from "./pages/UserProfile";
+import StarredGists from "./pages/styling/StarredGists";
+import UserGists from "./pages/UserGists";
 
 function App() {
   // const handleLogin = () => {
@@ -23,7 +25,10 @@ function App() {
             <Route path="/gist/:gistId" element={<GistPage />} />
           </Route>
 
-          <Route path="/user" element={<UserProfile />} />
+          <Route path="/user" element={<UserProfile />}>
+            <Route index element={<UserGists />} />
+            <Route path="starred" element={<StarredGists />} />
+          </Route>
 
           {/* <Route path="/" element={<Gists />}>
             <Route path="/gist/:gistId" element={<GistPage />} />

@@ -42,8 +42,23 @@ const UserProfile = () => {
             </div>
             <div className="userGistsContainer">
               <div className="sectionNav">
-                <NavLink to="/user">All Gists</NavLink>
-                <NavLink to="starred">Starred Gists</NavLink>
+                <NavLink
+                  end
+                  to="/user"
+                  className={({ isActive }) =>
+                    isActive ? "activeLink" : undefined
+                  }
+                >
+                  All Gists
+                </NavLink>
+                <NavLink
+                  to="starred"
+                  className={({ isActive }) =>
+                    isActive ? "activeLink" : undefined
+                  }
+                >
+                  Starred Gists
+                </NavLink>
               </div>
               <Outlet />
             </div>

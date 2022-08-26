@@ -12,11 +12,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addStarredGists: (state, action) => {
+      state.starredGists = [];
       action.payload.map((data) => state.starredGists.push(data));
     },
 
     addUserGists: (state, action) => {
-      action.payload.map((data) => state.userGists.push(data));
+      state.userGists = [];
+      action.payload.map((data) => {
+        state.userGists.push(data);
+      });
     },
   },
 });

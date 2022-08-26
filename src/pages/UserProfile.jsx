@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUserGists, addStarredGists } from "../features/userSlice";
 const UserProfile = () => {
-  const [userGists, setUserGists] = useState([]);
+  const [userssGists, setUserGists] = useState([]);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
 
@@ -18,11 +18,10 @@ const UserProfile = () => {
     const token = localStorage.getItem("token");
     Promise.all([getUserGists(token), userStarredGists(token)]).then(
       (response) => {
-        const [userGist, starredGists] = response;
-        setUserGists(userGist);
+        const [userGists, starredGists] = response;
+        setUserGists(userGists);
         dispatch(addUserGists(userGists));
         dispatch(addStarredGists(starredGists));
-        console.log(userGist, starredGists);
       }
     );
   }, []);
@@ -31,14 +30,14 @@ const UserProfile = () => {
 
   return (
     <div>
-      {userGists.length > 0 && (
+      {userssGists.length > 0 && (
         <div className="container">
           <div className="userProfile flex">
             <div className="userInfo flexColumn">
               <div className="profileImgContainer" style={{ width: "250px" }}>
-                <ProfileAvatar avatarUrl={userGists[0].owner.avatar_url} />
+                <ProfileAvatar avatarUrl={userssGists[0].owner.avatar_url} />
               </div>
-              <p>{userGists[0].owner.login}</p>
+              <p>{userssGists[0].owner.login}</p>
               <button className="btn">View GitHub Profile</button>
             </div>
             <div className="userGistsContainer">

@@ -1,28 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from "@reduxjs/toolkit";
 
 const initialState = {
-  userDetails: [],
+  starredGists: [],
+  userGists: [],
+  status: "idle",
+  stat: "idle",
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userLogin: (state, action) => {
-      //   console.log(action.payload);
-      state.userDetails.push(action.payload);
+    addStarredGists: (state, action) => {
+      action.payload.map((data) => state.starredGists.push(data));
     },
 
-    userLogout: (state) => {
-      console.log("User Logged Out");
+    addUserGists: (state, action) => {
+      action.payload.map((data) => state.userGists.push(data));
     },
   },
 });
-export const selectUser = (state) => {
-  console.log(state);
-  return state.user.userDetails;
+export const getStarredGists = (state) => {
+  return state.user.starredGists;
 };
 
-export const { userLogin, userLogout } = userSlice.actions;
+export const getUserGists = (state) => {
+  return state.user.userGists;
+};
+
+export const getStatus = (state) => state.user.status;
+
+export const { addUserGists, addStarredGists } = userSlice.actions;
 export default userSlice.reducer;

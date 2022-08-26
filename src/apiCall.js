@@ -4,6 +4,7 @@ const USER_URL = "https://api.github.com/user";
 const PUBLIC_GISTS_URL = "https://api.github.com/gists/public";
 const GIST_BY_ID_URL = "https://api.github.com/gists/";
 const USER_GISTS_URL = "https://api.github.com/users/fawadmehmood11/gists";
+const STARRED_GISTS_URL = "https://api.github.com/gists/starred";
 
 export const createAuthToken = async (TOKEN_URL, body, opts) => {
   const response = await axios.post(TOKEN_URL, body, opts);
@@ -66,6 +67,30 @@ export const getUserGists = async (accessToken) => {
   const response = await axios.get(`${USER_GISTS_URL}`, {
     headers: {
       Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (response.status === 200) {
+    return response.data;
+  }
+};
+
+export const userStarredGists = async (accessToken) => {
+  const response = await axios.get(STARRED_GISTS_URL, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (response.status === 200) {
+    return response.data;
+  }
+};
+
+export const forkGist = async (gistId, accessToken) => {
+  const response = await axios.get(`https://api.github.com/gists/starred`, {
+    headers: {
+      Accept: "application/vnd.github+json",
       Authorization: `Bearer ${accessToken}`,
     },
   });

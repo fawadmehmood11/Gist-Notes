@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import ProfileAvatar from "../components/ProfileAvatar";
 import GistDetails from "../components/GistDetails";
-import { getUserGists } from "../apiCall";
-import InputField from "../components/InputField";
-import GistCodeComponent from "../components/GistCodeComponent";
+import { getUserGists, userStarredGists } from "../apiCall";
 import "./styling/UserProfile.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addUserGists, addStarredGists } from "../features/userSlice";
 const UserProfile = () => {
   const [userGists, setUserGists] = useState([]);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getUserGists(localStorage.getItem("token")).then((response) => {
-      if (response) {
-        setUserGists(response);
+    const token = localStorage.getItem("token");
+    Promise.all([getUserGists(token), userStarredGists(token)]).then(
+      (response) => {
+        const [userGist, starredGists] = response;
+        setUserGists(userGist);
+        dispatch(addUserGists(userGists));
+        dispatch(addStarredGists(starredGists));
+        console.log(userGist, starredGists);
       }
-    });
+    );
   }, []);
 
   const handleInputChange = (e, changeType) => changeType(e.target.value);
@@ -37,8 +43,8 @@ const UserProfile = () => {
             </div>
             <div className="userGistsContainer">
               <div className="sectionNav">
-                <Link to="/user">All Gists</Link>
-                <Link to="starred">Starred Gists</Link>
+                <NavLink to="/user">All Gists</NavLink>
+                <NavLink to="starred">Starred Gists</NavLink>
               </div>
               <Outlet />
             </div>

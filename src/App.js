@@ -7,14 +7,10 @@ import Auth from "./pages/Auth";
 import Navbar from "./Navbar/Navbar";
 import GistPage from "./pages/GistPage";
 import UserProfile from "./pages/UserProfile";
-import StarredGists from "./pages/styling/StarredGists";
+import StarredGists from "./pages/StarredGists";
 import UserGists from "./pages/UserGists";
 
 function App() {
-  // const handleLogin = () => {
-  //   window.location.href = `${process.env.REACt_APP_BASEURL}${process.env.REACT_APP_CLIENT_ID}`;
-  // };
-
   return (
     <>
       <BrowserRouter>

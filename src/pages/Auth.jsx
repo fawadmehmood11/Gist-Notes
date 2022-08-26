@@ -5,9 +5,12 @@ import { storeUser, getAuthorizedUser } from "../utils";
 import { Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../features/userSlice";
-
+import LoadingSpinner from "../components/LoadingSpinner";
+import { useState } from "react";
 const Auth = () => {
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const TOKEN_URL =
     "https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token";
   let newUrl = "";
@@ -33,21 +36,25 @@ const Auth = () => {
   useEffect(() => {
     if (!getAuthorizedUser()) {
       createAuthToken(TOKEN_URL, body, opts).then((token) => {
-        console.log("checking res", token);
         if (token) {
-          // console.log("inside if");
           getUserDetails(token).then((response) => {
-            // console.log(response);
             storeUser(token, response);
-
-            // dispatch(userLogin(response));
+            setIsLoaded(true);
+            console.log("called auth effect");
           });
         }
       });
     }
   }, []);
 
-  return <Navigate to="/" replace={true} />;
+  const Spinner = !isLoaded ? <LoadingSpinner /> : "";
+  // console.log(Spinner);
+  return (
+    <>
+      {Spinner}
+      {isLoaded && <Navigate to="/" replace={true} />}
+    </>
+  );
 };
 
 export default Auth;

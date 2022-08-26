@@ -1,22 +1,22 @@
-import React from "react";
-import GistDetails from "../components/GistDetails";
+import React, { useState } from "react";
 import InputField from "../components/InputField";
 import GistCodeComponent from "../components/GistCodeComponent";
-import { useState } from "react";
+import GistDetails from "../components/GistDetails";
+import { getStarredGists } from "../features/userSlice";
 import { useSelector } from "react-redux";
-import { getUserGists } from "../features/userSlice";
 
-const UserGists = () => {
-  const userGists = useSelector(getUserGists);
+const StarredGists = () => {
+  const starredGists = useSelector(getStarredGists);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
+
   const handleInputChange = (e, changeType) => changeType(e.target.value);
 
   return (
-    <div className="users">
-      {userGists.length > 0 ? (
+    <div>
+      {starredGists.length > 0 ? (
         <div>
-          {userGists.map((gistData) => {
+          {starredGists.map((gistData) => {
             const filesList = Object.keys(gistData.files)[0];
             const codeUrl = gistData.files[filesList].raw_url;
             return (
@@ -59,4 +59,4 @@ const UserGists = () => {
   );
 };
 
-export default UserGists;
+export default StarredGists;

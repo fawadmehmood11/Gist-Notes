@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -9,8 +9,24 @@ const Navbar = () => {
   const [showDropDown, setShowDropDownVal] = useState(false);
 
   const userDetails = getAuthorizedUser();
+  let ref = useRef();
 
-  // console.log("userDetails", userDetails);
+  useEffect(() => {
+    const handler = (event) => {
+      if (showDropDown && ref.current && !ref.current.contains(event.target)) {
+        setShowDropDownVal(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
+    };
+  }, [showDropDown]);
+
+  // console.log("Reredering NavBar", userDetails);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,8 +38,7 @@ const Navbar = () => {
   };
 
   const dropDownClicked = () => {
-    // console.log(!showDropDown);
-    setShowDropDownVal(!showDropDown);
+    setShowDropDownVal((prev) => !prev);
   };
 
   return (
@@ -58,6 +73,7 @@ const Navbar = () => {
           </form>
           {userDetails && (
             <div
+              ref={ref}
               className="dropDown"
               style={{
                 width: "35px",

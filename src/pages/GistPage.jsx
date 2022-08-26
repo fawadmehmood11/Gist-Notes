@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./styling/GistPage.css";
 import { useParams } from "react-router-dom";
-import { getGistById } from "../apiCall";
+import { getGistById, forkGist } from "../apiCall";
 import GistCodeComponent from "../components/GistCodeComponent";
 import InputField from "../components/InputField";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GistDetails from "../components/GistDetails";
+import { getAuthorizedUser } from "../utils";
 
 const GistPage = () => {
   const { gistId } = useParams();
@@ -21,6 +22,7 @@ const GistPage = () => {
   useEffect(() => {
     getGistById(gistId).then((response) => {
       if (response) {
+        console.log("checking refresh");
         setGistData(response);
         setIsLoaded(true);
       }
@@ -33,6 +35,10 @@ const GistPage = () => {
     codeUrl = gistData.files[filesList].raw_url;
   }
 
+  const forkClicked = () => {
+    console.log("hha");
+  };
+
   const handleInputChange = (e, changeType) => changeType(e.target.value);
   const Spinner = !isLoaded ? <LoadingSpinner /> : "";
   return (
@@ -43,21 +49,36 @@ const GistPage = () => {
           <div className="header flex">
             <GistDetails gistData={gistData} />
             <div className="gistAction">
-              <span>
+              {getAuthorizedUser() && (
+                <>
+                  <button className="btn btnGistAction">
+                    <i className="fa far fa-edit"></i>
+                    Edit
+                  </button>
+                  <button className="btn btnGistAction">
+                    <i className="fa far fa-trash-o"></i>
+                    Delete
+                  </button>
+                </>
+              )}
+              <button className="btn btnGistAction">
                 <i className="fa fa-star-o"></i> Stars
                 <InputField
                   value={stars}
                   onChange={(e) => handleInputChange(e, setStars)}
                 />
-              </span>
-              <span>
+              </button>
+              <button
+                className="btn btnGistAction"
+                onClick={() => forkClicked()}
+              >
                 <i className="fa far fa-code-fork"></i>
                 Frok
                 <InputField
                   value={forks}
                   onChange={(e) => handleInputChange(e, setForks)}
                 />
-              </span>
+              </button>
             </div>
           </div>
           <div className="gistContainer">

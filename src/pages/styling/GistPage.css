@@ -13,8 +13,24 @@
   color: #0773ff;
 }
 
+.btnGistAction {
+  color: #0773ff;
+  background-color: transparent;
+  margin: 0px 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.btnGistAction:hover {
+  box-shadow: none;
+}
+
+.btnGistAction * {
+  margin: 0px 5px;
+}
+
 .gistAction span {
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .gistAction span * {

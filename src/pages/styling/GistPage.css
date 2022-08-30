@@ -1,0 +1,105 @@
+.gistsCode {
+  max-width: 900px;
+  padding: 10px;
+}
+
+.header {
+  margin: 0 auto;
+  padding: 20px 0px;
+  align-items: flex-start;
+}
+
+.gistAction {
+  color: #0773ff;
+}
+
+.btnGistAction {
+  color: #0773ff;
+  background-color: transparent;
+  margin: 0px 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.btnGistAction:hover {
+  box-shadow: none;
+}
+
+.btnGistAction * {
+  margin: 0px 5px;
+}
+
+.gistAction span * {
+  margin: 5px;
+}
+
+.gistContainer {
+  border: 1px solid#DDDDDD;
+  box-shadow: -3px 5px 8px #dddddd, 3px 5px 8px #dddddd;
+  border-radius: 5px;
+}
+
+.gistHeader {
+  border-bottom: 1px solid #dddddd;
+  padding: 7px 20px;
+}
+
+.gistFile .fileIcon {
+  color: black;
+  border: 1px solid black;
+  padding: 0 3px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.gistFile .fileName {
+  color: #0773ff;
+}
+
+.gistCode {
+  padding: 15px 25px;
+  overflow: hidden;
+}
+
+.gistCode li {
+  list-style-position: outside;
+  margin: 4px 0;
+  margin-left: 1em;
+}
+
+.gistCode li span {
+  position: relative;
+  right: -15px;
+  word-wrap: break-word;
+}
+
+textarea {
+  width: 100%;
+  /* height: fit-content; */
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.updateGistBtn {
+  background-color: #5acba1;
+  width: 80px;
+  height: 30px;
+  margin: 10px 0px;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modalCloseBtn {
+  font-size: 15px;
+  position: absolute;
+  background-color: transparent;
+  right: 10px;
+  top: 5px;
+}

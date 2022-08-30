@@ -4,11 +4,9 @@ import { createAuthToken, getUserDetails } from "../apiCall";
 import { storeUser, getAuthorizedUser } from "../utils";
 import { Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../features/userSlice";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useState } from "react";
 const Auth = () => {
-  const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   const TOKEN_URL =
@@ -48,7 +46,6 @@ const Auth = () => {
   }, []);
 
   const Spinner = !isLoaded ? <LoadingSpinner /> : "";
-  // console.log(Spinner);
   return (
     <>
       {Spinner}

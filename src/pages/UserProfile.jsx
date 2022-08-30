@@ -38,7 +38,13 @@ const UserProfile = () => {
                 <ProfileAvatar avatarUrl={userssGists[0].owner.avatar_url} />
               </div>
               <p>{userssGists[0].owner.login}</p>
-              <button className="btn">View GitHub Profile</button>
+              <a
+                className="btn"
+                href="https://github.com/fawadmehmood11"
+                target="_blank"
+              >
+                View GitHub Profile
+              </a>
             </div>
             <div className="userGistsContainer">
               <div className="sectionNav">

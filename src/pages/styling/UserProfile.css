@@ -16,7 +16,7 @@
   text-align: center;
 }
 
-.userInfo button {
+.userInfo a {
   padding: 10px;
   background-color: transparent;
   border: 1px solid #cad6d2;

@@ -7,6 +7,8 @@ import GistsGrid from "./GistsGrid";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { getAuthorizedUser } from "../utils";
+import { Outlet } from "react-router-dom";
+
 const Gists = () => {
   // const user = useSelector(selectUser);
 

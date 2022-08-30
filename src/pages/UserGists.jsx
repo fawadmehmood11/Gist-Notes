@@ -1,15 +1,19 @@
-import React from "react";
+import React, { createContext } from "react";
 import GistDetails from "../components/GistDetails";
 import InputField from "../components/InputField";
 import GistCodeComponent from "../components/GistCodeComponent";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getUserGists } from "../features/userSlice";
+import { Outlet } from "react-router-dom";
+import { UserContext } from "../context/GistContext";
 
 const UserGists = () => {
   const userGists = useSelector(getUserGists);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
+  const gridPage = true;
+
   const handleInputChange = (e, changeType) => changeType(e.target.value);
 
   return (
@@ -46,7 +50,9 @@ const UserGists = () => {
                   </div>
                 </div>
                 <div className="card gistCodeWrapper">
-                  <GistCodeComponent codeUrl={codeUrl} gridPage={true} />
+                  <UserContext.Provider value={{ codeUrl, gridPage }}>
+                    <GistCodeComponent />
+                  </UserContext.Provider>
                 </div>
               </div>
             );

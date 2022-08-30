@@ -4,12 +4,13 @@ import GistCodeComponent from "../components/GistCodeComponent";
 import GistDetails from "../components/GistDetails";
 import { getStarredGists } from "../features/userSlice";
 import { useSelector } from "react-redux";
+import { UserContext } from "../context/GistContext";
 
 const StarredGists = () => {
   const starredGists = useSelector(getStarredGists);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
-
+  const gridPage = true;
   const handleInputChange = (e, changeType) => changeType(e.target.value);
 
   return (
@@ -46,7 +47,9 @@ const StarredGists = () => {
                   </div>
                 </div>
                 <div className="card gistCodeWrapper">
-                  <GistCodeComponent codeUrl={codeUrl} gridPage={true} />
+                  <UserContext.Provider value={{ codeUrl, gridPage }}>
+                    <GistCodeComponent />
+                  </UserContext.Provider>
                 </div>
               </div>
             );

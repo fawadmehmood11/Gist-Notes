@@ -38,7 +38,6 @@ const GistsList = ({ gistsData }) => {
                       style={{ width: "35px", display: "inline-block" }}
                     >
                       <ProfileAvatar avatarUrl={data.owner.avatar_url} />
-                      {/* <img src={data.owner.avatar_url} alt="" style={avatarImg} /> */}
                     </Link>
                   </td>
                   <td>{data.owner.login}</td>

@@ -88,13 +88,50 @@ export const userStarredGists = async (accessToken) => {
 };
 
 export const forkGist = async (gistId, accessToken) => {
-  const response = await axios.get(`https://api.github.com/gists/starred`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  console.log(`https://api.github.com/gists/${gistId}/forks`);
+  const response = await axios.post(
+    `https://api.github.com/gists/${gistId}/forks`,
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  console.log(response);
+  if (response.status === 201) {
+    return response;
+  }
+};
+
+export const starGist = async (gistId, accessToken) => {
+  const response = await axios.put(
+    `https://api.github.com/gists/${gistId}/star`,
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  console.log(response);
+  if (response.status === 204) {
+    return response;
+  }
+};
+
+export const updateGist = async (gistId, data, accessToken) => {
+  const response = await axios.patch(
+    `https://api.github.com/gists/${gistId}`,
+    data,
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
   if (response.status === 200) {
-    return response.data;
+    return response;
   }
 };

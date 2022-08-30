@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   starredGists: [],
   userGists: [],
@@ -30,6 +29,10 @@ export const getStarredGists = (state) => {
 
 export const getUserGists = (state) => {
   return state.user.userGists;
+};
+
+export const getGistById = (state, gistId) => {
+  return state.user.userGists.find((gist) => gist.id === gistId);
 };
 
 export const getStatus = (state) => state.user.status;

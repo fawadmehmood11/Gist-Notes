@@ -1,6 +1,6 @@
 .gistsCode {
   max-width: 900px;
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .header {
@@ -27,10 +27,6 @@
 
 .btnGistAction * {
   margin: 0px 5px;
-}
-
-.gistAction span {
-  /* margin: 10px; */
 }
 
 .gistAction span * {
@@ -75,4 +71,35 @@
   position: relative;
   right: -15px;
   word-wrap: break-word;
+}
+
+textarea {
+  width: 100%;
+  /* height: fit-content; */
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.updateGistBtn {
+  background-color: #5acba1;
+  width: 80px;
+  height: 30px;
+  margin: 10px 0px;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modalCloseBtn {
+  font-size: 15px;
+  position: absolute;
+  background-color: transparent;
+  right: 10px;
+  top: 5px;
 }

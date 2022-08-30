@@ -9,16 +9,35 @@ import GistPage from "./pages/GistPage";
 import UserProfile from "./pages/UserProfile";
 import StarredGists from "./pages/StarredGists";
 import UserGists from "./pages/UserGists";
-
+import EditGist from "./pages/EditGist";
+import GistCodeComponent from "./components/GistCodeComponent";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/">
+          {/* <Route path="/">
             <Route index element={<Gists />} />
             <Route path="/gist/:gistId" element={<GistPage />} />
+          </Route> */}
+
+          {/* <Route path="/">
+            <Route index element={<Gists />} />
+            <Route path="/gist/:gistId" element={<GistPage />}>
+              <Route index element={<GistCodeComponent />} />
+              <Route path="edit/:gistId" element={<EditGist />} />
+            </Route>
+          </Route> */}
+
+          <Route path="/">
+            <Route index element={<Gists />} />
+            <Route path="/">
+              <Route path="/gist/:gistId" element={<GistPage />}>
+                <Route index element={<GistCodeComponent />} />
+                <Route path="edit/:gistId" element={<EditGist />} />
+              </Route>
+            </Route>
           </Route>
 
           <Route path="/user" element={<UserProfile />}>

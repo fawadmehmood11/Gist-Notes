@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import "./styling/GistPage.css";
-import { useParams } from "react-router-dom";
-import { getGistById, forkGist } from "../apiCall";
+import { Outlet, useParams } from "react-router-dom";
+import { getGistById, forkGist, starGist } from "../apiCall";
 import GistCodeComponent from "../components/GistCodeComponent";
 import InputField from "../components/InputField";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GistDetails from "../components/GistDetails";
 import { getAuthorizedUser } from "../utils";
+import { Link } from "react-router-dom";
+import { UserContext } from "../context/GistContext";
+// const UserContext = createContext();
 
 const GistPage = () => {
   const { gistId } = useParams();
@@ -18,11 +21,10 @@ const GistPage = () => {
   let filesList = "";
   let fileName = "";
   let codeUrl = "";
-
+  const gridPage = false;
   useEffect(() => {
     getGistById(gistId).then((response) => {
       if (response) {
-        console.log("checking refresh");
         setGistData(response);
         setIsLoaded(true);
       }
@@ -35,9 +37,9 @@ const GistPage = () => {
     codeUrl = gistData.files[filesList].raw_url;
   }
 
-  const forkClicked = () => {
-    console.log("hha");
-  };
+  const forkClicked = () => {};
+
+  const starGists = () => {};
 
   const handleInputChange = (e, changeType) => changeType(e.target.value);
   const Spinner = !isLoaded ? <LoadingSpinner /> : "";
@@ -52,8 +54,10 @@ const GistPage = () => {
               {getAuthorizedUser() && (
                 <>
                   <button className="btn btnGistAction">
-                    <i className="fa far fa-edit"></i>
-                    Edit
+                    <Link to={`edit/${gistId}`} style={{ color: "#0773ff" }}>
+                      <i className="fa far fa-edit"></i>
+                      Edit
+                    </Link>
                   </button>
                   <button className="btn btnGistAction">
                     <i className="fa far fa-trash-o"></i>
@@ -61,7 +65,7 @@ const GistPage = () => {
                   </button>
                 </>
               )}
-              <button className="btn btnGistAction">
+              <button className="btn btnGistAction" onClick={() => starGists()}>
                 <i className="fa fa-star-o"></i> Stars
                 <InputField
                   value={stars}
@@ -90,7 +94,11 @@ const GistPage = () => {
                 <span className="fileName">{fileName}</span>
               </p>
             </div>
-            <GistCodeComponent codeUrl={codeUrl} gridPage={false} />
+
+            <UserContext.Provider value={{ codeUrl, gridPage }}>
+              <Outlet />
+            </UserContext.Provider>
+            {/* <GistCodeComponent codeUrl={codeUrl} gridPage={false} /> */}
           </div>
         </div>
       )}
